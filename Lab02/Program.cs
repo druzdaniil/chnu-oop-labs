@@ -60,17 +60,17 @@ class Program
 
         Console.WriteLine("#4: ");
         
-        Continent continent1 = new Continent("Євразія", 123456.78);
-        Continent continent2 = new Continent("Євразія", 123456.78);
+        Medicine medicine1 = new Medicine("Мілукант", 120, 319.99);
+        Medicine medicine2 = new Medicine("Мілукант", 120, 319.99);
 
-        object obj1 = continent1;
-        Continent? continent3 = obj1 as Continent;
+        object obj1 = medicine1;
+        Medicine? medicine3 = obj1 as Medicine;
         
-        Console.WriteLine($"Результат оператора as: {continent3 != null}");
-        Console.WriteLine($"Чи є continent3 екзмепляром класу Continent?: {continent3 is Continent}");
+        Console.WriteLine($"Результат оператора as: {medicine3 != null}");
+        Console.WriteLine($"Чи є medicine3 екзмепляром класу Medicine?: {medicine3 is Medicine}");
         Console.WriteLine("--------------------------");
-        Console.WriteLine($"Equals (перевизначений): {continent1.Equals(continent2)}");
-        Console.WriteLine($"ToString (перевизначений):\n{continent1.ToString()}");
+        Console.WriteLine($"Equals (перевизначений): {medicine1.Equals(medicine2)}");
+        Console.WriteLine($"ToString (перевизначений):\n{medicine1.ToString()}");
     }
 
     static int ElementInput()
@@ -90,25 +90,28 @@ class Program
     }
 }
 
-internal class Continent
+internal class Medicine
 {
-    internal string ContinentName;
-    internal double ContinentSquare;
+    internal string MedicineName;
+    internal int NumberOfMedicine;
+    internal double PriceOfMedicine;
 
-    internal Continent(string name, double square)
+    internal Medicine(string name, int numberOf, double priceOf)
     {
-        ContinentName = name;
-        ContinentSquare = square;
+        MedicineName = name;
+        NumberOfMedicine = numberOf;
+        PriceOfMedicine = priceOf;
     }
 
     public override bool Equals(object? obj)
     {
-        if (obj is Continent continent)
+        if (obj is Medicine medicine)
         {
-            bool continentResult = ContinentName == continent.ContinentName
-                                   && ContinentSquare == continent.ContinentSquare;
+            bool medicineResult = MedicineName == medicine.MedicineName
+                                  && NumberOfMedicine == medicine.NumberOfMedicine
+                                  && PriceOfMedicine == medicine.PriceOfMedicine;
             
-            return continentResult;
+            return medicineResult;
         }
     
         return false;
@@ -116,6 +119,6 @@ internal class Continent
     
     public override string ToString()
     {
-        return $"Континент: {ContinentName} \nЙого площа: {ContinentSquare}";
+        return $"Назва: {MedicineName} \nКількість: {NumberOfMedicine} \nЦіна: {PriceOfMedicine}";
     }
 }
