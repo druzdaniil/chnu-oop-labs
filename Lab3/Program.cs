@@ -28,6 +28,8 @@ class Program
         Console.WriteLine("#5:");
         medicine1[0] = "Складова №1";
         Console.WriteLine($"Отримання значення складової за індеком 0: {medicine1[0]}");
+        Console.Write("Приклад спроби встановити значення за індеком, більшим за розмір масиву: ");
+        medicine1[15] = "Складова №16";
     }
 }
 
@@ -37,7 +39,7 @@ internal class Medicine
     int numberOfMedicine;
     double priceOfMedicine;
     public string recommendationsMedicine { get; set; }
-    private string[] conponentsOfMedicine = new string[15];
+    private string[] conponentsOfMedicine = new string[14];
 
     internal Medicine(string name, int numberOf, double priceOf)
     {
@@ -60,7 +62,16 @@ internal class Medicine
 
     public string this[int index]
     {
-        get => conponentsOfMedicine[index];
-        set => conponentsOfMedicine[index] = value;
+        get { return conponentsOfMedicine[index]; }
+        set
+        {
+            if (index <= conponentsOfMedicine.Length)
+            {
+                conponentsOfMedicine[index] = value;
+            } else
+            {
+                Console.WriteLine($"Індекс даного масиву не може бути більше за {conponentsOfMedicine.Length}");
+            }
+        }
     }
 }
